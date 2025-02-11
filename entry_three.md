@@ -4,8 +4,10 @@
 
 >Things I enjoy about this class:
 >
->>This information is so new! It's exciting doing things I've never done before.
+>>This information is so new! It's exciting doing things I've never done before. 
+>
 >>This information is relevant in a world that needs people who understands computers and systems and how to work with them.
+>
 >>The class is easy to get into and the layout is user friendly, helping me understand things as we go along.
 
 It's a great class and I see the merit of it, but.... 
@@ -13,6 +15,7 @@ It's a great class and I see the merit of it, but....
 >Things I struggle with:
 >
 >>Feeling lost almost every week but not exactly sure why I feel lost?
+>
 >>Not fully understanding how to document my notes, likely because of the reason above. 
 
 I am trying to feel more confident and try new things, but it's not easy. 
