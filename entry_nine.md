@@ -27,3 +27,16 @@ For our class, we utilized the following to create a search page:
 > HTML page (mylibrary.html) -> search button on that form activates search.php -> that establishes a connection to the OPAC we created. 
 > The PHP script contains a MySQL query that allows us to search the books table or bibliographic record. 
 
+## Step-by-Step Set Up
+Before we can begin creating an ILS, we have to set up and configure our LAMP server. We touched on this a couple weeks ago (refer to [entry eight](https://github.com/tori0121/syslib-journal/blob/main/entry_eight.md) on my GitHub), but this involved creating an 'opacdb' database that contained a 'books' table, which included many of the elements I listed aboved. While we only work with one table for our OPAC, the reality is that an ILS relies on several tables to efficiently store, manage, and retrieve information. 
+As already touched on, we begin with an HTML page
+1. We create an HTML page that enables queries (mylibrary.html). This includes a submit or search button.
+2. The submit button activates a PHP script (search.php).
+3. Search.php connects to the OPAC database we created (remember the books table in MySQL under the 'opacdb'). 
+4. From here, it goes through the information stored in our database to return results matching our query. 
+5. After we configure our OPAC, we added more information to it. 
+To add more records to our books table, we use MySQL and begin with 'mysql -u opacuser -p' and then use the 'insert' command to add new data for our table. An example would be:
+> To add books to our database, we use the following format: (author, title, publisher, copyright). 
+>> An example: 
+>>insert into books
+>>('Kaner, Hannah', 'Godkiller', 'Harper Voyager', '2023')
