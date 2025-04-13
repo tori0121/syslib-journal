@@ -11,6 +11,6 @@
 
 I am eager to see how the rest of the semester goes and look forward to finishing the year strong ♡︎
 
-! [William T Young Library](https://libraries.uky.edu/sites/default/files/styles/big_3x2/public/2022-01/210412Features022%201.jpg?h=c3635fa2&itok=FFJ8g9oT)
+![William T Young Library](https://libraries.uky.edu/sites/default/files/styles/big_3x2/public/2022-01/210412Features022%201.jpg?h=c3635fa2&itok=FFJ8g9oT)
 
 
