@@ -1,0 +1,21 @@
+# Koha Overview
+This week, we installed the Koha ILS, a free open-source library system used to manage library operations. It's a comprehensive system that handles everything from cataloging, circulation, acquisitions, and patron management. This week, like last week, was a lesson in trusting what I've learned and having confidence in my capability. While I did struggle a bit more with Koha than with Omeka, it was mostly the web-side of things that tripped me up. 
+
+## Installation Process
+For Koha, the first thing I did was actually create a new VM on Google Cloud that had more RAM and disk space. We also needed to implement a firewall rule to allow traffic to port 8080, which is the port we used to access the Koha staff interface. This port allows the server to know where to send internet traffic. For Apache2, this is typically port 80. From here, I moved onto the installation process. 
+
+1. As always, the first thing I did was update and upgrade my server and then used `sudo apt install gnupg2 apt-transport-https` which is used to create digital signatures, encrypt data, and ensure secure communication. 
+2. After rebooting the system after all updates were completed, I added the Koha repository to my system. This required me to login as the root user using `sudo su` and then using the following command: `echo 'deb http://debian.koha-community.org/koha stable main' | sudo tee /etc/apt/sources.list.d/koha.list` and then downloaded and installed the GPG key in the 'trusted.gpg.d' directory using `wget -qO- https://debian.koha-community.org/koha/gpg.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/koha.gpg > /dev/null`
+	* To inspect the key, I used `gpg --show-keys /etc/apt/trusted.gpg.d/koha.gpg` which output an email from Koha. 
+3. From here, I synced the new repo with the Koha remote repo using `apt update` and `apt show koha-common` to view the Koha package information. I then installed it using `apt install koha-common`
+4. After installation, I had to edit the configuration files by going into the Koha directory and then creating back-up files, which lets me have an untouched file in case things get wonky using `cd /etc/koha/` and `cp koha-sites.conf koha-sites.conf.backup`
+	* To actually configure the file, I use `nano /etc/koha/koha-sites.conf` and then edited the `INTRAPORT` information so that it was for port 8080: `INTRAPORT="8080"`
+5. Then, I then setup MySQL and then enabled URL rewriting and CGI functionality using `a2enmod` and `a2enmod cgi`. I then restarted Apache2. 
+6. Next, I created a database for Koha using `koha-create --create-db bibliolib` and told Apache2 to listen on port 8080 by adding `Listen 8080` under the `Listen 80` line using `nano /etc/apache2/ports.conf`
+	* To ensure the Apache changes were accepted, I used `apachectl configtest` and then restarted Apache2. 
+7. After this, I disabled the default Apache setup using `a2dissite 000-default`, enabled traffic compression `a2enmod deflate`, enabled the bibliolib site using `a2ensite bibliolib` and then reloaded and restarted Apache2. 
+8. Once the back-end work was completed, I used `nano /etc/koha/sites/bibliolib/koha-conf.xml` to get the Koha username and password from the <config> stanza and the <user> and <password> lines. 
+9. The rest involved visiting http://35.226.219.25:8080/ and then establishing OPAC preferences and playing around with the Koha system. 
+
+## Setting up Koha
+Setting up Koha was much different than establishing WordPress or Omeka. Both of those were similar in terms of installation and in terms of adjusting the appearance. For Koha, I didn't adjust the appearance and I'm not sure that's even an option. However, I was able to more directly engage with different library processes. I was able to establish patron accounts pretty easily and some of it mimicked what I do at the library I work at, which was fun to see the parallels. Creating bibliographic records was more tricky. I was unable to import the MARC21 files that I downloaded from UK's library. I did, however, make some records from scratch which was a great refresher for cataloging and the process that goes into establishing those records. I also was able to delete patron records, circulate materials, and overall gain a better understanding for how Koha works. 
